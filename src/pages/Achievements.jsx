@@ -1,39 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
-
-const achievements = [
-  {
-    year: '2023',
-    title: 'National Champions',
-    description: 'First place in the National Archery Championship',
-    category: 'Team Achievement'
-  },
-  {
-    year: '2022',
-    title: 'Asian Games Medal',
-    description: 'Silver medal in the Asian Games Archery Competition',
-    category: 'International'
-  },
-  {
-    year: '2021',
-    title: 'University Games',
-    description: 'Gold medal in individual and team events',
-    category: 'University Level'
-  },
-  {
-    year: '2020',
-    title: 'Regional Tournament',
-    description: 'Won the regional archery championship',
-    category: 'Regional'
-  },
-  {
-    year: '2019',
-    title: 'State Championship',
-    description: 'Secured first place in state-level competitions',
-    category: 'State Level'
-  }
-];
+import Model from '../components/Model';
+import MedalStand from '../components/MedalStand';
+import achievements from '../Json Files/Achivements.json';
 
 const Achievements = () => {
   const [ref, inView] = useInView({
@@ -41,6 +11,17 @@ const Achievements = () => {
     threshold: 0.1,
   });
   const [showAll, setShowAll] = useState(false);
+  const [openPopUp, setOpenPopUp] = useState(false);
+  const [gold,setGold] = useState(0);
+  const [silver,setSilver] = useState(0);
+  const [bronze,setBronze] = useState(0);
+
+  const handleMedal = (gold,silver,bronze) => {
+    setGold(gold);
+    setSilver(silver);
+    setBronze(bronze);
+    setOpenPopUp(true);
+  }
 
   return (
     <div className="min-h-screen pt-20 px-4">
@@ -61,21 +42,30 @@ const Achievements = () => {
               transition={{ duration: 0.8, delay: index * 0.2 }}
               className="glass-effect p-6 rounded-lg"
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between" onClick={()=>handleMedal(achievement.gold,achievement.silver,achievement.bronze)}>
                 <div>
                   <span className="text-accent font-semibold">{achievement.year}</span>
                   <h3 className="text-2xl font-bold mt-2">{achievement.title}</h3>
-                  <p className="text-gray-300 mt-2">{achievement.description}</p>
+                  <p className="text-white-300 mt-2">{achievement.description}</p>
                 </div>
                 <div className="mt-4 md:mt-0">
-                  <span className="bg-accent bg-opacity-20 text-accent px-4 py-2 rounded-full">
+                  <span className="bg-accent bg-opacity-100 text-white px-4 py-2 rounded-full">
                     {achievement.category}
                   </span>
                 </div>
               </div>
+              
 
             </motion.div>
           ))}
+          <Model 
+              isOpen={openPopUp}
+              onClose={()=>setOpenPopUp(false)}
+              title="Achievements"
+              >
+                <MedalStand gold={gold} silver={silver} bronze={bronze} />
+
+              </Model>
         </div>
 
         <div className="mt-6 text-center">

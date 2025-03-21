@@ -42,21 +42,21 @@ const Contact = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="text-xl font-semibold mb-2">Location</h3>
-                <p className="text-gray-300">
+                <p className="text-white-300">
                   University of Uva Wellassa<br />
                   Badulla, Sri Lanka
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Contact Info</h3>
-                <p className="text-gray-300">
+                <p className="text-white-300">
                   Email: info@archeryuva.com<br />
                   Phone: +94 123 456 789
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Training Hours</h3>
-                <p className="text-gray-300">
+                <p className="text-white-300">
                   Monday - Friday: 9:00 AM - 6:00 PM<br />
                   Saturday: 9:00 AM - 1:00 PM<br />
                   Sunday: Closed
@@ -82,7 +82,7 @@ const Contact = () => {
                     name="name"
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-accent"
+                    className="w-full px-4 py-2 rounded-lg bg-white-800 border border-gray-700 focus:outline-none focus:border-accent"
                     required
                   />
                 </div>
@@ -96,7 +96,7 @@ const Contact = () => {
                     name="email"
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-accent"
+                    className="w-full px-4 py-2 rounded-lg bg-white-800 border border-gray-700 focus:outline-none focus:border-accent"
                     required
                   />
                 </div>
@@ -110,7 +110,7 @@ const Contact = () => {
                     name="subject"
                     value={formState.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-accent"
+                    className="w-full px-4 py-2 rounded-lg bg-white-800 border border-gray-700 focus:outline-none focus:border-accent"
                     required
                   />
                 </div>
@@ -124,7 +124,7 @@ const Contact = () => {
                     value={formState.message}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-accent"
+                    className="w-full px-4 py-2 rounded-lg bg-white-800 border border-gray-700 focus:outline-none focus:border-accent"
                     required
                   ></textarea>
                 </div>

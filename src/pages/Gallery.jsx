@@ -73,7 +73,7 @@ const Gallery = () => {
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-semibold mb-2">{image.title}</h3>
-                  <p className="text-gray-300">{image.description}</p>
+                  <p className="text-white-300">{image.description}</p>
                 </div>
               </motion.div>
             </motion.div>

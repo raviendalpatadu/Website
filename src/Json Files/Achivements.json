@@ -1,0 +1,48 @@
+[
+    {
+      "year": "2023",
+      "title": "National Champions",
+      "description": "First place in the National Archery Championship",
+      "category": "Team Achievement",
+      "gold": 10,
+      "silver": 15,
+      "bronze": 7
+    },
+    {
+      "year": "2022",
+      "title": "Asian Games Medal",
+      "description": "Silver medal in the Asian Games Archery Competition",
+      "category": "International",
+      "gold": 3,
+      "silver": 19,
+      "bronze": 1
+    },
+    {
+      "year": "2021",
+      "title": "University Games",
+      "description": "Gold medal in individual and team events",
+      "category": "University Level",
+      "gold": 11,
+      "silver": 5,
+      "bronze": 7
+    },
+    {
+      "year": "2020",
+      "title": "Regional Tournament",
+      "description": "Won the regional archery championship",
+      "category": "Regional",
+      "gold": 5,
+      "silver": 12,
+      "bronze": 34
+    },
+    {
+      "year": "2019",
+      "title": "State Championship",
+      "description": "Secured first place in state-level competitions",
+      "category": "State Level",
+      "gold": 12,
+      "silver": 7,
+      "bronze": 8
+    }
+  ]
+  
