@@ -25,7 +25,7 @@ const Home = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Welcome to the Archery Club of Uva
           </h1>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-white-300 mb-8">
             Discover the art of precision and discipline through archery
           </p>
           <motion.a
@@ -51,19 +51,19 @@ const Home = () => {
           >
             <div className="glass-effect p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Expert Training</h3>
-              <p className="text-gray-300">
+              <p className="text-white-300">
                 Learn from experienced coaches and improve your archery skills
               </p>
             </div>
             <div className="glass-effect p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Modern Facilities</h3>
-              <p className="text-gray-300">
+              <p className="text-white-300">
                 Access to state-of-the-art equipment and training facilities
               </p>
             </div>
             <div className="glass-effect p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Regular Competitions</h3>
-              <p className="text-gray-300">
+              <p className="text-white-300">
                 Participate in tournaments and showcase your skills
               </p>
             </div>
