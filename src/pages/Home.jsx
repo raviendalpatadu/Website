@@ -56,7 +56,7 @@ const ref = useRef();
 const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
 const figureBg = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return (
-    <div className="min-h-screen relative absolute inset-0">
+    <div className="min-h-screen relative absolute inset-0 ">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative w-full overflow-hidden z-20">
       <motion.div

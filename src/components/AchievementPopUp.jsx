@@ -2,7 +2,7 @@ import React from 'react'
 
 const AchievementPopUp = () => {
   return (
-    <div>AchievementPopUp</div>
+    <div>Achievement</div>
   )
 }
 
