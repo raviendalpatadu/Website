@@ -75,7 +75,7 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-full left-0 right-0 glass-effect"
+          className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg"
         >
           <div className="px-4 py-2">
             {links.map((link) => (

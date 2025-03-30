@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import ArcherAnimation from '../components/ArcherAnimation';
 import Achievements from './Achievements';
 import About from './About';
 import Gallery from './Gallery';
 import Contact from './Contact';
+import BackgroundSlider from '../components/BackgroundSlider';
 
 const Home = () => {
   const [ref, inView] = useInView({
@@ -13,16 +13,16 @@ const Home = () => {
   });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600">
       {/* Hero Section */}
-      <section className="hero-pattern min-h-screen flex items-center justify-center px-4 pt-20">
+      <section className="background-slider min-h-screen flex items-center justify-center px-4 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-shadow-xl">
             Welcome to the Archery Club of Uva
           </h1>
           <p className="text-xl text-white-300 mb-8">
@@ -41,7 +41,7 @@ const Home = () => {
 
 
       {/* Features Section */}
-      <section ref={ref} className="py-20 px-4">
+      <section ref={ref} className="py-20 px-4 ">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -82,6 +82,7 @@ const Home = () => {
       <section className="py-20 px-4">
         <Contact/>  
       </section>
+    {/* </div> */}
     </div>
   );
 };
