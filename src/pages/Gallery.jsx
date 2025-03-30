@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ReactImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css"
+import { useNavigate } from 'react-router-dom';
 
 const images = [
   {
@@ -46,7 +47,7 @@ const Gallery = () => {
     triggerOnce: false,
     threshold: 0.1,
   });
-
+const navigate = useNavigate()
   return (
     <div className="min-h-screen pt-2 px-4">
       <motion.section
@@ -59,34 +60,9 @@ const Gallery = () => {
 
         <div 
           ref={ref} 
-          className="glass-effect p-6 rounded-lg"
+          className="glass-effect p-6 rounded-lg cursor-pointer" onClick={() => navigate('/newgallery')}
         >
-          {/* {images.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-effect rounded-lg overflow-hidden"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{image.title}</h3>
-                  <p className="text-white-300">{image.description}</p>
-                </div>
-              </motion.div>
-            </motion.div>
-          ))} */}
-
-        <ReactImageGallery items={images}/>
+        <ReactImageGallery items={images} />
         </div>
       </motion.section>
     </div>

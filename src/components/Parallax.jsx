@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import field from "../public/field.jpg";
+import field from "../public/field.png";
 import archer from "../public/archer.png";
 import arrow from "../public/arrow.png";
 import target from "../public/target.png";
+import stars from "../public/stars.png"
 
 const Parallax = ({ type }) => {
   const ref = useRef();
@@ -38,18 +39,17 @@ const Parallax = ({ type }) => {
     <div 
       className="relative flex h-screen w-full items-center justify-center overflow-hidden"
       ref={ref}
-      style={{
-        background: type === "About Us" 
-          ? "linear-gradient(180deg, #37C6FF, #73D7FF)" 
-          : "linear-gradient(180deg, #111132, #505064)"
-      }}
     >
       <motion.h1 
         style={{ x: yText, opacity: archerOpacity }} 
-        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[10vw] text-black`}
+        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[10vw] text-white`}
       >
         {type === "About Us" ? "About Us" : "Our Achivements"}
       </motion.h1>
+      <motion.div 
+        className="absolute inset-0 bg-cover bg-bottom z-0" 
+        style={{ backgroundImage: `url(${stars})` }}
+      />
 
       <motion.div 
         className="absolute inset-0 bg-cover bg-bottom z-1" 

@@ -38,8 +38,8 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #122c68; */
-  background: linear-gradient(to right, rgb(59, 130, 246), rgb(147, 51, 234));
+  /* background-color:; */
+  background: linear-gradient(to right, rgb(5, 16, 33), rgb(29, 5, 51));
   color: #f8fafc;
 }
 
