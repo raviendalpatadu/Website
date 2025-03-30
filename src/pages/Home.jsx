@@ -23,7 +23,7 @@ const Home = () => {
     }
 }
   return (
-    <div className="min-h-screen relative absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600">
+    <div className="min-h-screen relative absolute inset-0 ">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative w-full overflow-hidden z-20">
       <motion.div
