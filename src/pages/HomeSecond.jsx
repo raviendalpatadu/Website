@@ -32,21 +32,21 @@ const HomeSecond = () => {
       transition={{ duration: 0.8 }}
       className="grid grid-cols-1 md:grid-cols-3 gap-8 "
     >
-      <div className="glass-effect p-6 rounded-lg">
+      <motion.div className="glass-effect p-6 rounded-lg" >
         <h3 className="text-xl font-bold mb-4">Expert Training</h3>
         <p className="text-white-300">Learn from experienced coaches and improve your archery skills</p>
-        <img src={`${img1}`} alt="img1" className="w-full h-auto"/>
-      </div>
-      <div className="glass-effect p-6 rounded-lg">
+        <motion.img src={`${img1}`} alt="img1" className="w-full h-auto"/>
+      </motion.div>
+      <motion.div className="glass-effect p-6 rounded-lg">
         <h3 className="text-xl font-bold mb-4">Modern Facilities</h3>
         <p className="text-white-300">Access to state-of-the-art equipment and training facilities</p>
-        <img src={`${img2}`} alt="img2" className="w-full h-auto"/>
-      </div>
-      <div className="glass-effect p-6 rounded-lg">
+        <motion.img src={`${img2}`} alt="img2" className="w-full h-auto"/>
+      </motion.div>
+      <motion.div className="glass-effect p-6 rounded-lg">
         <h3 className="text-xl font-bold mb-4">Regular Competitions</h3>
         <p className="text-white-300">Participate in tournaments and showcase your skills</p>
-        <img src={`${img3}`} alt="img3" className="w-full h-auto"/>
-      </div>
+        <motion.img src={`${img3}`} alt="img3" className="w-full h-auto" />
+      </motion.div>
     </motion.div>
     <motion.h1
     className="text-3xl md:text-5xl font-bold text-shadow-xl flex items-center justify-center mt-10 md:mt-20"

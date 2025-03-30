@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Parallax from './components/Parallax';
 import HomeSecond from './pages/HomeSecond';
+import NewGallery from './pages/NewGallery';
 import Achievement from './components/achievements/Achievement';
 
 
@@ -18,6 +19,9 @@ function App() {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
+        <Routes>
+        <Route path="/" element={
+          <>
         <section id="Home" className="relative h-[100vh] md:h-screen snap-start md:snap-center">
         <Home/>
       </section>
@@ -40,6 +44,10 @@ function App() {
       <section id="Contact" className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center">
         <Contact/>  
       </section>
+      </>
+      }/>
+      <Route path="/newgallery" element={<NewGallery/>}/>
+      </Routes>
         </main>
         <Footer />
       </div>
