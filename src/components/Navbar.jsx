@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import logo from "../public/logo.jpeg"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,44 +9,49 @@ const Navbar = () => {
 
   const links = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
-    { path: '/achievements', label: 'Achievements' },
-    { path: '/gallery', label: 'Gallery' },
-    { path: '/contact', label: 'Contact' },
+    { path: '#About', label: 'About Us' },
+    { path: '#Achievements', label: 'Achievements' },
+    { path: '#Gallery', label: 'Gallery' },
+    { path: '#Contact', label: 'Contact' },
   ];
-
+  const handleNavigation = (path) => {
+    if (path.startsWith('#')) {
+      const sectionId = path.replace('#', '');
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setIsOpen(false); // Close mobile menu
+      }
+    } else {
+      // Navigate normally for pages
+      window.location.href = path;
+    }
+  };
   return (
     <nav className="glass-effect fixed w-full z-50 px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-white flex items-center">
+        <Link to="/" className="text-2xl font-bold text-white flex grid gris-cols-2 items-center">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            className='flex items-center space-x-3'
           >
-            Archery Club of Uva
+            <img src={`${logo}`} className='h-[40px] w-[40px]'/>
+            <p>Archery Club of Uva</p>
           </motion.span>
         </Link>
 
         <div className="hidden md:flex space-x-8">
           {links.map((link) => (
-            <Link
+            <button
               key={link.path}
-              to={link.path}
+              onClick={() => handleNavigation(link.path)}
               className={`relative ${
-                location.pathname === link.path
-                  ? 'text-accent'
-                  : 'text-white hover:text-accent'
-              } transition-colors duration-300`}
-            >
-              {location.pathname === link.path && (
-                <motion.div
-                  layoutId="underline"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
-                />
-              )}
-              {link.label}
-            </Link>
+              location.pathname === link.path ? 'text-accent' : 'text-white hover:text-accent'
+              } transition-colors duration-300`}>
+            {link.label}
+             </button>
           ))}
         </div>
 
@@ -79,14 +85,20 @@ const Navbar = () => {
         >
           <div className="px-4 py-2">
             {links.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="block py-2 text-white hover:text-accent"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
+              <button
+              key={link.path}
+              onClick={() => handleNavigation(link.path)}
+              className="block py-2 text-white hover:text-accent">
+            {link.label}
+             </button>
+              // <Link
+              //   key={link.path}
+              //   to={link.path}
+              //   
+              //   onClick={() => setIsOpen(false)}
+              // >
+              //   {link.label}
+              // </Link>
             ))}
           </div>
         </motion.div>

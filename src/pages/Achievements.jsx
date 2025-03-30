@@ -33,8 +33,8 @@ const Achievements = () => {
       >
         <h1 className="text-4xl font-bold mb-12">Our Achievements</h1>
         
-        <div ref={ref} className="space-y-8">
-          {(showAll ? achievements : achievements.slice(0, 3)).map((achievement, index) => (
+        <div ref={ref} className="space-y-8 overflow-y-auto max-h-[80vh] md:max-h-[70vh] px-2">
+          {achievements.map((achievement, index) => (
             <motion.div
               key={index}
               initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
@@ -69,33 +69,15 @@ const Achievements = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <button
+          {/* <button
             onClick={() => setShowAll(!showAll)}
             className="bg-accent text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors"
           >
             {showAll ? 'See Less' : 'See More'}
-          </button>
+          </button> */}
         </div>
 
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <h2 className="text-2xl font-bold mb-6">Join Our Winning Team</h2>
-          <p className="text-gray-300 mb-8">
-            Be part of our success story and achieve greatness in archery
-          </p>
-          <motion.a
-            href="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-accent text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors"
-          >
-            Get Started Today
-          </motion.a>
-        </motion.div>
+        
       </motion.section>
     </div>
   );

@@ -43,14 +43,14 @@ const Contact = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Location</h3>
                 <p className="text-white-300">
-                  University of Uva Wellassa<br />
-                  Badulla, Sri Lanka
+                  Rotoruwa,Kabillawela North,<br />
+                  Bandarawela, Sri Lanka
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Contact Info</h3>
                 <p className="text-white-300">
-                  Email: info@archeryuva.com<br />
+                  Email: uvaarchery@gmail.com<br />
                   Phone: +94 123 456 789
                 </p>
               </div>
