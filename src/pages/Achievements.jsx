@@ -7,7 +7,7 @@ import achievements from '../Json Files/Achivements.json';
 
 const Achievements = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
   const [showAll, setShowAll] = useState(false);
@@ -37,9 +37,9 @@ const Achievements = () => {
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
-              initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
+              initial={{ x: index % 2 === 0 ? -100 : 100, opacity: 0 }}
               animate={inView ? { x: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.5 }}
               className="glass-effect p-6 rounded-lg"
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between" onClick={()=>handleMedal(achievement.gold,achievement.silver,achievement.bronze)}>
