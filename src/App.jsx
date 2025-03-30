@@ -6,6 +6,10 @@ import Achievements from './pages/Achievements';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import Parallax from './components/Parallax';
+import HomeSecond from './pages/HomeSecond';
+
+
 
 function App() {
   return (
@@ -13,13 +17,30 @@ function App() {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+        <section id="Home" className="relative h-[100vh] md:h-screen snap-start md:snap-center">
+        <Home/>
+      </section>
+      <section className="relative h-[180vh] md:h-screen snap-start md:snap-center">
+        <HomeSecond/>
+      </section>
+        <section className="relative h-[100vh] md:h-screen snap-start md:snap-center">
+        <Parallax type="About Us"/>
+      </section>
+      <section id="About" className="px-4 relative h-[180vh] md:h-screen snap-start md:snap-center">
+        <About/>  
+      </section>
+      <section  className="py-4 relative h-[100vh] md:h-screen snap-start md:snap-center">
+        <Parallax type="Achievements"/>
+      </section>
+      <section id="Achievements" className="px-4 relative h-[120vh] md:h-screen md:snap-center">
+        <Achievements/>  
+      </section>
+      <section id="Gallery" className="px-4 relative h-[60vh] md:h-screen md:snap-center">
+        <Gallery/>  
+      </section>
+      <section id="Contact" className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center">
+        <Contact/>  
+      </section>
         </main>
         <Footer />
       </div>
