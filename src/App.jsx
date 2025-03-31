@@ -4,12 +4,12 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Achievements from './pages/Achievements1';
 import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Parallax from './components/Parallax';
 import HomeSecond from './pages/HomeSecond';
 import NewGallery from './pages/NewGallery';
 import Achievement from './components/achievements/Achievement';
+import Contact from './components/contact/Contact';
 
 
 
@@ -42,7 +42,7 @@ function App() {
         <Gallery/>  
       </section>
       <section id="Contact" className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center">
-        <Contact/>  
+        <Contact/>
       </section>
       </>
       }/>
