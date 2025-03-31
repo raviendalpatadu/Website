@@ -16,42 +16,46 @@ import Achievement from './components/achievements/Achievement';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
         <Routes>
-        <Route path="/" element={
-          <>
-        <section id="Home" className="relative h-[100vh] md:h-screen snap-start md:snap-center">
-        <Home/>
-      </section>
-      <section className="relative h-[180vh] md:h-screen snap-start md:snap-center">
-        <HomeSecond/>
-      </section>
-        <section className="relative h-[100vh] md:h-screen snap-start md:snap-center">
-        <Parallax type="About Us"/>
-      </section>
-      <section id="About" className="px-4 relative h-[180vh] md:h-screen snap-start md:snap-center">
-        <About/>  
-      </section>
-      <section  className="py-4 relative h-[100vh] md:h-screen snap-start md:snap-center" id="Achievements">
-        <Parallax type="Achievements"/>
-      </section>
-      <Achievement />
-      <section id="Gallery" className="px-4 relative h-[60vh] md:h-screen md:snap-center">
-        <Gallery/>  
-      </section>
-      <section id="Contact" className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center">
-        <Contact/>  
-      </section>
-      </>
-      }/>
-      <Route path="/newgallery" element={<NewGallery/>}/>
-      </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+          <Route 
+            path="/" 
+            element={
+              <div className="flex flex-col">
+                <section id="Home" className="relative h-[100vh] md:h-screen snap-start md:snap-center">
+                  <Home/>
+                </section>
+                <section className="relative h-[180vh] md:h-screen snap-start md:snap-center">
+                  <HomeSecond/>
+                </section>
+                <section className="relative h-[100vh] md:h-screen snap-start md:snap-center">
+                  <Parallax type="About Us"/>
+                </section>
+                <section id="About" className="px-4 relative h-[180vh] md:h-screen snap-start md:snap-center">
+                  <About/>  
+                </section>
+                <section className="py-4 relative h-[100vh] md:h-screen snap-start md:snap-center" id="Achievements">
+                  <Parallax type="Achievements"/>
+                </section>
+                <Achievement />
+                <section id="Gallery" className="px-4 relative h-[60vh] md:h-screen md:snap-center">
+                  <Gallery/>  
+                </section>
+                <section id="Contact" className="py-4 px-4 relative h-[140vh] snap-start md:h-screen md:snap-center">
+                  <Contact/>  
+                </section>
+              </div>
+            }
+          />
+          <Route path="/newgallery" element={<NewGallery />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  </Router>
+  
   );
 }
 

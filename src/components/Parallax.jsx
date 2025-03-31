@@ -42,7 +42,7 @@ const Parallax = ({ type }) => {
     >
       <motion.h1 
         style={{ x: yText, opacity: archerOpacity }} 
-        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[10vw] text-white`}
+        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[8vw] text-white`}
       >
         {type === "About Us" ? "About Us" : "Our Achivements"}
       </motion.h1>

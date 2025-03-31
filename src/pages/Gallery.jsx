@@ -60,9 +60,8 @@ const navigate = useNavigate()
 
         <div 
           ref={ref} 
-          className="glass-effect p-6 rounded-lg cursor-pointer" onClick={() => navigate('/newgallery')}
-        >
-        <ReactImageGallery items={images} />
+          className="glass-effect p-6 rounded-lg cursor-pointer">
+        <ReactImageGallery items={images} onClick={() => navigate('/newgallery')} />
         </div>
       </motion.section>
     </div>
