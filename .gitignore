@@ -1,1 +1,4 @@
 node_modules/.vite/deps/_metadata.json
+*.js.map
+/dist/
+/node_modules/
