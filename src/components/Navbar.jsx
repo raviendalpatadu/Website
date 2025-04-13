@@ -29,7 +29,7 @@ const Navbar = () => {
   };
   return (
     <nav className="glass-effect fixed w-full z-50 px-4 py-3">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center pr-[50px]">
         <Link to="/" className="text-2xl font-bold text-white flex grid gris-cols-2 items-center">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
@@ -42,7 +42,7 @@ const Navbar = () => {
           </motion.span>
         </Link>
 
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 mr-4">
           {links.map((link) => (
             <button
               key={link.path}
