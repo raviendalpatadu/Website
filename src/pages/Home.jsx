@@ -2,19 +2,41 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Archer from "../images/test3.jpg";
 import Archer2 from "../images/test2.jpg";
 import Archer3 from "../images/test4.jpg";
+// Import portrait images for mobile
+import ArcherMobile from "../images/test1-mobile.jpg";  // You'll need to add these mobile versions
+import Archer2Mobile from "../images/test2-mobile.jpg"; // of your images that are in portrait
+import Archer3Mobile from "../images/test3-mobile.jpg"; // orientation (9:16 ratio ideally)
 import { useState, useEffect } from 'react';
 
 const Home = () => {
-  const images = [Archer, Archer2, Archer3];
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+  // Desktop and Mobile image pairs
+  const imageSet = [
+    { desktop: Archer, mobile: ArcherMobile },
+    { desktop: Archer2, mobile: Archer2Mobile },
+    { desktop: Archer3, mobile: Archer3Mobile },
+  ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 for right, -1 for left
+  const [direction, setDirection] = useState(1);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-play effect
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prevIndex) => 
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === imageSet.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
 
@@ -24,17 +46,38 @@ const Home = () => {
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
+      scale: 1.0
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1.05,
+      transition: {
+        x: {
+          type: "spring",
+          stiffness: 200,
+          damping: 25
+        },
+        opacity: {
+          duration: 0.5
+        },
+        scale: {
+          duration: 8,
+          ease: "easeInOut"
+        }
+      }
     },
     exit: (direction) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
+      scale: 1.1,
+      transition: {
+        x: { duration: 0.5 },
+        opacity: { duration: 0.5 }
+      }
     })
   };
 
@@ -47,9 +90,9 @@ const Home = () => {
     setDirection(newDirection);
     setCurrentIndex((prevIndex) => {
       if (newDirection === 1) {
-        return prevIndex === images.length - 1 ? 0 : prevIndex + 1;
+        return prevIndex === imageSet.length - 1 ? 0 : prevIndex + 1;
       }
-      return prevIndex === 0 ? images.length - 1 : prevIndex - 1;
+      return prevIndex === 0 ? imageSet.length - 1 : prevIndex - 1;
     });
   };
 
@@ -80,7 +123,11 @@ const Home = () => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Background Carousel */}
+
+      {/* Gradient Overlay - moved above content but below pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-[2]" />
+
+      {/* Background Carousel with zoom effect */}
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -90,12 +137,16 @@ const Home = () => {
           animate="center"
           exit="exit"
           transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
+            x: { type: "spring", stiffness: 200, damping: 25 },
+            opacity: { duration: 0.5 },
+            scale: { 
+              duration: 8, 
+              ease: "easeInOut"
+            }
           }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
+          dragElastic={0.8}
           onDragEnd={(e, { offset, velocity }) => {
             const swipe = swipePower(offset.x, velocity.x);
             if (swipe < -swipeConfidenceThreshold) {
@@ -106,19 +157,19 @@ const Home = () => {
           }}
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: `url(${images[currentIndex]})`,
+            backgroundImage: `url(${isMobile ? 
+              imageSet[currentIndex].mobile : 
+              imageSet[currentIndex].desktop
+            })`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: isMobile ? 'center center' : 'center',
             backgroundRepeat: 'no-repeat',
           }}
         />
       </AnimatePresence>
 
-      {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-[1]" />
-
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
+      {/* Content Section - Adjusted for better mobile visibility */}
+      <div className="relative z-[3] h-full flex flex-col items-center justify-center text-white px-4">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -126,7 +177,7 @@ const Home = () => {
           className="text-center"
         >
           <motion.h1 
-            className="text-4xl md:text-7xl font-bold mb-6"
+            className="text-3xl md:text-7xl font-bold mb-4 md:mb-6"
             initial="initial"
             animate="animate"
             variants={breathingAnimation}
@@ -135,7 +186,7 @@ const Home = () => {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-3xl max-w-2xl mx-auto"
+            className="text-lg md:text-3xl max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -144,9 +195,9 @@ const Home = () => {
           </motion.p>
         </motion.div>
 
-        {/* Scroll Down Indicator - Only visible on desktop */}
+        {/* Scroll Indicator - Now visible on both mobile and desktop */}
         <motion.div 
-          className="hidden md:flex flex-col items-center absolute bottom-8"
+          className="flex flex-col items-center absolute bottom-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -159,21 +210,21 @@ const Home = () => {
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              width="32" 
-              height="32" 
+              width="24"
+              height="24"
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 
               strokeWidth="2" 
               strokeLinecap="round" 
               strokeLinejoin="round"
-              className="feather feather-chevrons-down"
+              className="md:w-8 md:h-8"
             >
               <path d="M7 13l5 5 5-5"/>
               <path d="M7 6l5 5 5-5"/>
             </svg>
           </motion.div>
-          <span className="text-sm text-white/80 mt-2">Let's Shoot</span>
+          <span className="text-xs md:text-sm text-white/80 mt-2">Let's Shoot</span>
         </motion.div>
       </div>
     </div>

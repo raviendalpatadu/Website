@@ -84,3 +84,12 @@ body {
   max-height: 600px !important; /* Set max height */
   object-fit: cover;            /* Adjust to maintain aspect ratio */
 }
+
+.camo-pattern {
+  background-image: 
+    radial-gradient(rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+    radial-gradient(rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+    radial-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+  background-size: 50px 50px, 40px 40px, 30px 30px;
+  background-position: 0 0, 25px 25px, 15px 15px;
+}

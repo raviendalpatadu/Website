@@ -5,6 +5,7 @@ import OlympicQuotaPlace from "../../public/Olympic quota place.jpeg"
 import AllIslandChampionship from "../../public/AllIslandChampionship.jpeg"
 import WAAJointTraning from "../../public/WAA Joint Traning.jpeg"
 import Olympicmedalist from "../../public/Olympic medalist.jpeg"
+import BatteredWall from "../../images/battered-wall-paint.jpg"
 
 
 
@@ -47,7 +48,7 @@ const Single = ({item}) =>{
     const y = useTransform(scrollYProgress, [0,1], [-300, 300]);
 
     return (
-    <section >
+    <section className="relative z-[2]">
         <div className="container">
             <div className="wrapper">
                 <div className="imageContainer" ref={ref}>
@@ -79,14 +80,30 @@ const Achievement = () => {
     });
 
   return (
-    <div className='achievements' ref={ref}>
-        <div className="progress">
-            <h1>Our Achievements</h1>
-            <motion.div  style={{scaleX}} className="progressBar"></motion.div>
-        </div>
+    <div className='achievements relative' ref={ref}>
+      {/* Battered Wall Texture Overlay */}
+      <div 
+        className="fixed inset-0 z-[1] mix-blend-soft-light opacity-40"
+        style={{
+          backgroundImage: `url(${BatteredWall})`,
+          backgroundSize: '500px',
+          backgroundPosition: 'center',
+          imageRendering: 'crisp-edges',
+        }}
+      />
+
+      {/* Main content with increased z-index */}
+      <div className="progress z-[2] relative">
+        <h1>Our Achievements</h1>
+        <motion.div style={{scaleX}} className="progressBar"></motion.div>
+      </div>
+      
+      {/* Wrap items in a container with higher z-index */}
+      <div className="relative z-[2]">
         {items.map((item) => (
-            <Single item={item} key={item.id}/>
+          <Single item={item} key={item.id}/>
         ))}
+      </div>
     </div>
   );
 };
