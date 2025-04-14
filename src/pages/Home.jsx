@@ -1,16 +1,18 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 import Archer from "../images/test3.jpg";
 import Archer2 from "../images/test2.jpg";
 import Archer3 from "../images/test4.jpg";
 // Import portrait images for mobile
-import ArcherMobile from "../images/test1-mobile.jpg";  // You'll need to add these mobile versions
+import ArcherMobile from "../images/test1-mobile.jpg"; // You'll need to add these mobile versions
 import Archer2Mobile from "../images/test2-mobile.jpg"; // of your images that are in portrait
 import Archer3Mobile from "../images/test3-mobile.jpg"; // orientation (9:16 ratio ideally)
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+
   // Desktop and Mobile image pairs
   const imageSet = [
     { desktop: Archer, mobile: ArcherMobile },
@@ -18,24 +20,11 @@ const Home = () => {
     { desktop: Archer3, mobile: Archer3Mobile },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Auto-play effect
+  // Start autoplay
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === imageSet.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
@@ -43,11 +32,21 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
-      scale: 1.0
+      scale: 1.0,
     }),
     center: {
       zIndex: 1,
@@ -58,16 +57,16 @@ const Home = () => {
         x: {
           type: "spring",
           stiffness: 200,
-          damping: 25
+          damping: 25,
         },
         opacity: {
-          duration: 0.5
+          duration: 0.5,
         },
         scale: {
           duration: 8,
-          ease: "easeInOut"
-        }
-      }
+          ease: "easeInOut",
+        },
+      },
     },
     exit: (direction) => ({
       zIndex: 0,
@@ -76,9 +75,9 @@ const Home = () => {
       scale: 1.1,
       transition: {
         x: { duration: 0.5 },
-        opacity: { duration: 0.5 }
-      }
-    })
+        opacity: { duration: 0.5 },
+      },
+    }),
   };
 
   const swipeConfidenceThreshold = 10000;
@@ -105,8 +104,8 @@ const Home = () => {
         duration: 4,
         ease: "easeInOut",
         repeat: Infinity,
-      }
-    }
+      },
+    },
   };
 
   const scrollAnimation = {
@@ -116,14 +115,13 @@ const Home = () => {
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
     <div className="relative h-screen overflow-hidden">
-
       {/* Gradient Overlay - moved above content but below pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-[2]" />
 
@@ -139,10 +137,7 @@ const Home = () => {
           transition={{
             x: { type: "spring", stiffness: 200, damping: 25 },
             opacity: { duration: 0.5 },
-            scale: { 
-              duration: 8, 
-              ease: "easeInOut"
-            }
+            scale: { duration: 8, ease: "easeInOut" },
           }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -157,13 +152,14 @@ const Home = () => {
           }}
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: `url(${isMobile ? 
-              imageSet[currentIndex].mobile : 
-              imageSet[currentIndex].desktop
+            backgroundImage: `url(${
+              isMobile
+                ? imageSet[currentIndex].mobile
+                : imageSet[currentIndex].desktop
             })`,
-            backgroundSize: 'cover',
-            backgroundPosition: isMobile ? 'center center' : 'center',
-            backgroundRepeat: 'no-repeat',
+            backgroundSize: "cover",
+            backgroundPosition: isMobile ? "center center" : "center",
+            backgroundRepeat: "no-repeat",
           }}
         />
       </AnimatePresence>
@@ -176,7 +172,7 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-center"
         >
-          <motion.h1 
+          <motion.h1
             className="text-3xl md:text-7xl font-bold mb-4 md:mb-6"
             initial="initial"
             animate="animate"
@@ -184,8 +180,8 @@ const Home = () => {
           >
             Welcome to Archery Club of Uva
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg md:text-3xl max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -196,7 +192,7 @@ const Home = () => {
         </motion.div>
 
         {/* Scroll Indicator - Now visible on both mobile and desktop */}
-        <motion.div 
+        <motion.div
           className="flex flex-col items-center absolute bottom-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -208,23 +204,25 @@ const Home = () => {
             animate="animate"
             className="text-white/80"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
               className="md:w-8 md:h-8"
             >
-              <path d="M7 13l5 5 5-5"/>
-              <path d="M7 6l5 5 5-5"/>
+              <path d="M7 13l5 5 5-5" />
+              <path d="M7 6l5 5 5-5" />
             </svg>
           </motion.div>
-          <span className="text-xs md:text-sm text-white/80 mt-2">Let's Shoot</span>
+          <span className="text-xs md:text-sm text-white/80 mt-2">
+            Let's Shoot
+          </span>
         </motion.div>
       </div>
     </div>
