@@ -5,6 +5,11 @@ import {motion, useScroll, useSpring, useTransform} from "framer-motion"
 import Model from '../Model'
 import MedalStand from '../MedalStand'
 import items from "../../Json Files/Achivements.json"
+import OlympicQuotaPlace from "../../public/Olympic quota place.jpeg"
+import AllIslandChampionship from "../../public/AllIslandChampionship.jpeg"
+import WAAJointTraning from "../../public/WAA Joint Traning.jpeg"
+import Olympicmedalist from "../../public/Olympic medalist.jpeg"
+import BatteredWall from "../../images/battered-wall-paint.jpg"
 
 
 
@@ -92,53 +97,20 @@ const Single = ({item}) =>{
     }
 
     return (
-    <section >
-    <div className="flex items-center justify-center w-full h-full overflow-hidden pt-60 md:pt-10">
-    <div className="max-w-[1366px] h-full mx-auto flex items-center justify-center gap-6 md:flex-row flex-col flex-wrap">
-    
-    {/* Image Container */}
-    <div className="flex-1 h-[60%] w-[60%] lg:w-full max-h-[250px] md:max-h-full">
-      <img src={item.img} alt="image" className="h-full w-full object-cover md:object-contain " ref={ref}/>
-    </div>
-
-    {/* Text Container */}
-    <motion.div 
-    className="hidden md:flex flex-1 flex-col gap-4 p-2 text-center md:text-left"
-    style={{ y }}
-    >
-    <h2 className="text-3xl md:text-5xl font-bold">{item.title}</h2>
-    <p className="text-gray-400 text-xs md:text-base">{item.des}</p>
-    <button 
-        className="bg-orange-500 text-white rounded-lg px-6 py-2 w-40 cursor-pointer hover:bg-orange-600"
-        onClick={() => handleMedal(item.gold, item.silver, item.bronze,item.children)}
-    >
-        See Demo
-    </button>
-    </motion.div>
-
-    {/* Static Version for Mobile */}
-    <div className="md:hidden flex flex-1 flex-col gap-4 p-1/2 text-center items-center">
-    <h2 className="text-3xl font-bold">{item.title}</h2>
-    <p className="text-gray-400 text-xs">{item.des}</p>
-    <button 
-        className="bg-orange-500 text-white rounded-lg px-6 py-2 w-40 cursor-pointer hover:bg-orange-600"
-        onClick={() => handleMedal(item.gold, item.silver, item.bronze)}
-    >
-        See Demo
-    </button>
-    </div>
-    </div>
-    </div>
-
-
-        <Model 
-    isOpen={openPopUp}
-    onClose={()=>setOpenPopUp(false)}
-    title="Achievements"
-    >
-      <MedalStand gold={gold} silver={silver} bronze={bronze} data={ item.children }/>
-
-    </Model>
+    <section className="relative z-[2]">
+        <div className="container">
+            <div className="wrapper">
+                <div className="imageContainer" ref={ref}>
+                    <img src={item.img} alt="" />
+                </div>
+            <motion.div className="textContainer" style={{y}}>
+                <h2>{item.title}</h2>
+                {/* <h3>{item.subtitle}</h3> */}
+                <p>{item.des}</p>
+                <button>See Demo</button>
+            </motion.div>
+            </div>
+        </div>
     </section>
    
     ); 
@@ -158,14 +130,30 @@ const Achievement = () => {
     });
 
   return (
-    <div className='relative' ref={ref}>
-        <div className="sticky top-0 left-0 pt-20 text-center text-orange-500 text-3xl md:text-4xl lg:text-5xl">
-            <h1>Our Achievements</h1>
-            <motion.div  style={{scaleX}} className="h-2 bg-white w-full"></motion.div>
-        </div>
+    <div className='achievements relative' ref={ref}>
+      {/* Battered Wall Texture Overlay */}
+      <div 
+        className="fixed inset-0 z-[1] mix-blend-soft-light opacity-40"
+        style={{
+          backgroundImage: `url(${BatteredWall})`,
+          backgroundSize: '500px',
+          backgroundPosition: 'center',
+          imageRendering: 'crisp-edges',
+        }}
+      />
+
+      {/* Main content with increased z-index */}
+      <div className="progress z-[2] relative">
+        <h1>Our Achievements</h1>
+        <motion.div style={{scaleX}} className="progressBar"></motion.div>
+      </div>
+      
+      {/* Wrap items in a container with higher z-index */}
+      <div className="relative z-[2]">
         {items.map((item) => (
-            <Single item={item} key={item.id}/>
+          <Single item={item} key={item.id}/>
         ))}
+      </div>
     </div>
   );
 };

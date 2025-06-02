@@ -1,15 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
-      colors: {
-        accent: '#f59e0b',
+      fontFamily: {
+        'revalia': ['Revalia', 'sans-serif'],
       },
     },
   },
-  plugins: [require('tailwindcss-textshadow')], 
+  plugins: [],
 }
