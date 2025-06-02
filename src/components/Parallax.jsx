@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import field from "../public/field.png";
-import archer from "../public/archer.png";
-import arrow from "../public/arrow.png";
-import target from "../public/target.png";
-import stars from "../public/stars.png"
+import field from "../AssetsFolder/field.png";
+import archer from "../AssetsFolder/archer.png";
+import arrow from "../AssetsFolder/arrow.png";
+import target from "../AssetsFolder/target.png";
+import stars from "../AssetsFolder/stars.png"
 
 const Parallax = ({ type }) => {
   const ref = useRef();

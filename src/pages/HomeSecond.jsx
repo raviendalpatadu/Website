@@ -1,9 +1,7 @@
 import React from 'react'
-import img1 from "../public/img1.jpeg";
-import img2 from "../public/img2.jpeg";
-import img3 from "../public/img3.jpeg";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import video from "../AssetsFolder/RavienVideo.mp4"
 
 const HomeSecond = () => {
     const [ref, inView] = useInView({
@@ -25,8 +23,22 @@ const HomeSecond = () => {
       }
   return (
     <section ref={ref} className="py-6 px-4 relative h-[200vh] md:h-[100vh] snap-start md:snap-center">
+      
   <div className="container mx-auto md:h-screen py-12">
-    <motion.div
+  <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="absolute top-0 left-0 w-full h-full object-cover z-100"
+>
+  <source src={video} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+        {/* <source  type="video/mov" />
+        Your browser does not support the video tag.
+      </video> */}
+    {/* <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
@@ -47,15 +59,15 @@ const HomeSecond = () => {
         <p className="text-white-300">Participate in tournaments and showcase your skills</p>
         <motion.img src={`${img3}`} alt="img3" className="w-full h-auto" />
       </motion.div>
-    </motion.div>
-    <motion.h1
-    className="text-3xl md:text-5xl font-bold text-shadow-xl flex items-center justify-center mt-10 md:mt-20"
+    </motion.div>*/}
+    {/* <motion.h1
+    className="text-3xl md:text-5xl font-bold text-shadow-xl flex items-center justify-center mt-10 md:mt-20 z-10"
     variants={TextVariant}
     initial="initial"
     animate="animate"
   >
     Be a part of the Best
-  </motion.h1>
+  </motion.h1>  */}
   </div>
 
   

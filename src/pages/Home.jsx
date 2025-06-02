@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Archer from "../public/archer.png";
+import Archer from "../AssetsFolder/archer.png";
 import { useRef } from 'react';
-import logo from "../public/logo.jpeg"
+import logo from "../AssetsFolder/logo.jpeg"
 
 const Home = () => {
   const textVariants ={

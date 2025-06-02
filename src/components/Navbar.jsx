@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import logo from "../public/logo.jpeg"
+import logo from "../AssetsFolder/logo.jpeg"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
