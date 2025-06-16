@@ -1,15 +1,12 @@
 import React, { useRef, useState } from 'react'
 import "./achievements.scss"
 import {motion, useScroll, useSpring, useTransform} from "framer-motion"
-
-import Model from '../Model'
-import MedalStand from '../MedalStand'
-import items from "../../Json Files/Achivements.json"
 import OlympicQuotaPlace from "../../public/Olympic quota place.jpeg"
 import AllIslandChampionship from "../../public/AllIslandChampionship.jpeg"
 import WAAJointTraning from "../../public/WAA Joint Traning.jpeg"
 import Olympicmedalist from "../../public/Olympic medalist.jpeg"
 import BatteredWall from "../../images/battered-wall-paint.jpg"
+
 
 
 
