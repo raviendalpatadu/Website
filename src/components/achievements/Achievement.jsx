@@ -1,69 +1,69 @@
 import React, { useRef, useState } from 'react'
 import "./achievements.scss"
 import {motion, useScroll, useSpring, useTransform} from "framer-motion"
-import OlympicQuotaPlace from "../../public/Olympic quota place.jpeg"
-import AllIslandChampionship from "../../public/AllIslandChampionship.jpeg"
-import WAAJointTraning from "../../public/WAA Joint Traning.jpeg"
-import Olympicmedalist from "../../public/Olympic medalist.jpeg"
+import OlympicQuotaPlace from "../../../public/Olympic quota place.jpeg"
+import AllIslandChampionship from "../../../public/AllIslandChampionship.jpeg"
+import WAAJointTraning from "../../../public/WAA_Joint_Traning.jpeg"
+import Olympicmedalist from "../../../public/Olympic medalist.jpeg"
 import BatteredWall from "../../images/battered-wall-paint.jpg"
 
 
 
 
-// const items = [
-//     {
-//         id:1,
-//         title:"2024 WAA Joint Training",
-//         img:WAAJointTraning,
-//         des:"Our archers and coach was selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7,
-//         children: [
-//       { "category": "U10 Boys", "Gold": "Thisula" },
-//       { "category": "U10 Girls", "Silver": "Tenashi", "Bronze": "Kushali" },
-//       { "category": "U12 Boys", "Gold": "Senula" },
-//       { "category": "U12 Girls", "Gold": "Amalmi" },
-//       { "category": "U14 Boys", "Gold": "Dinujaya" },
-//       { "category": "U14 Girls", "Gold": "Thenuki" },
-//       { "category": "U18 Boys", "Gold": "Dewmina" },
-//       { "category": "U18 Girls", "Gold": "Nithuli" },
-//       { "category": "60M Cadet Boys","Gold": "Dewmina","Silver": "Dinujaya","Bronze": "Bihandu" },
-//       { "category": "60M Cadet Girls", "Gold": "Thenuki" },
-//       { "category": "70M Boys", "Silver": "Ravien" },
-//       { "category": "Over 40", "Gold": "Chathuranga", "Bronze": "Chamil" }
-//     ]
-//       },
-//     {
-//         id:2,
-//         title:"Quater Finalist in Archery World Cup",
-//         // subtitle:"Ravein Dalapatadu",
-//         img:OlympicQuotaPlace ,
-//         des:"Once again you made us proud well done Archer. Unfortunately you was not able to grab the Olympic quota place but this is the best Achievement by any Sri Lankan Archer upto now. You had to face many difficulties to achieve this achievement. This was not a silk road for you. You walked through it and did the best you can to make mother Sri Lanka proud. Well done for your achievement. All the best for your future and hoping to see your face in 2024 Olympics you can do it, you will do it.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7,
-//         children:[]
-//     },
-//     {
-//         id:3,
-//         title:"All-Island Championship",
-//         img:AllIslandChampionship,
-//         des:"The All-Island Wayamba Archery Championships 2023 which attracted archers island wide, was held successfully at the Royal International School ground in Kurunegala recently.Uva Archery Club dominated proceedings winning 11 medals (5 golds, 4 silvers and 3 bronze). The championship saw participants competing in a variety of categories, including recurve and compound for both men and women.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7
-//     },
-//     {
-//         id:4,
-//         title:"Youth Olympic Dream in Sight",
-//         img:Olympicmedalist,
-//         des:"Uva Archery Archer Ravien Dalpatadu participated in Youth Olympic Games Argentina 2018. Was able to rank 6th in the individual men's event bringing glory to mother Sri Lanka. Highest achievement in archery history for Sri Lanka in a youth event. All the best from Uva Archery family",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7
-//     }
-// ]
+const items = [
+    {
+        id:1,
+        title:"2024 WAA Joint Training",
+        img:WAAJointTraning,
+        des:"Our archers and coach was selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
+        "gold": 10,
+        "silver": 15,
+        "bronze": 7,
+        children: [
+      { "category": "U10 Boys", "Gold": "Thisula" },
+      { "category": "U10 Girls", "Silver": "Tenashi", "Bronze": "Kushali" },
+      { "category": "U12 Boys", "Gold": "Senula" },
+      { "category": "U12 Girls", "Gold": "Amalmi" },
+      { "category": "U14 Boys", "Gold": "Dinujaya" },
+      { "category": "U14 Girls", "Gold": "Thenuki" },
+      { "category": "U18 Boys", "Gold": "Dewmina" },
+      { "category": "U18 Girls", "Gold": "Nithuli" },
+      { "category": "60M Cadet Boys","Gold": "Dewmina","Silver": "Dinujaya","Bronze": "Bihandu" },
+      { "category": "60M Cadet Girls", "Gold": "Thenuki" },
+      { "category": "70M Boys", "Silver": "Ravien" },
+      { "category": "Over 40", "Gold": "Chathuranga", "Bronze": "Chamil" }
+    ]
+      },
+    {
+        id:2,
+        title:"Quater Finalist in Archery World Cup",
+        // subtitle:"Ravein Dalapatadu",
+        img:OlympicQuotaPlace ,
+        des:"Once again you made us proud well done Archer. Unfortunately you was not able to grab the Olympic quota place but this is the best Achievement by any Sri Lankan Archer upto now. You had to face many difficulties to achieve this achievement. This was not a silk road for you. You walked through it and did the best you can to make mother Sri Lanka proud. Well done for your achievement. All the best for your future and hoping to see your face in 2024 Olympics you can do it, you will do it.",
+        "gold": 10,
+        "silver": 15,
+        "bronze": 7,
+        children:[]
+    },
+    {
+        id:3,
+        title:"All-Island Championship",
+        img:AllIslandChampionship,
+        des:"The All-Island Wayamba Archery Championships 2023 which attracted archers island wide, was held successfully at the Royal International School ground in Kurunegala recently.Uva Archery Club dominated proceedings winning 11 medals (5 golds, 4 silvers and 3 bronze). The championship saw participants competing in a variety of categories, including recurve and compound for both men and women.",
+        "gold": 10,
+        "silver": 15,
+        "bronze": 7
+    },
+    {
+        id:4,
+        title:"Youth Olympic Dream in Sight",
+        img:Olympicmedalist,
+        des:"Uva Archery Archer Ravien Dalpatadu participated in Youth Olympic Games Argentina 2018. Was able to rank 6th in the individual men's event bringing glory to mother Sri Lanka. Highest achievement in archery history for Sri Lanka in a youth event. All the best from Uva Archery family",
+        "gold": 10,
+        "silver": 15,
+        "bronze": 7
+    }
+]
 
 const Single = ({item}) =>{
     const ref = useRef();

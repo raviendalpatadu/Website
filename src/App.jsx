@@ -20,15 +20,15 @@ import test4 from "../src/images/test4.jpg";
 import test1Mobile from "../src/images/test1-mobile.jpg";
 import test2Mobile from "../src/images/test2-mobile.jpg";
 import test3Mobile from "../src/images/test3-mobile.jpg";
-import img1 from "../src/public/img1.jpeg";
-import img2 from "../src/public/img2.jpeg";
-import img3 from "../src/public/img3.jpeg";
-import field from "../src/public/field.png";
-import archer from "../src/public/archer.png";
-import arrow from "../src/public/arrow.png";
-import target from "../src/public/target.png";
-import stars from "../src/public/stars.png";
-import logo from "../src/public/logo.jpeg";
+import img1 from "../src/AssetsFolder/img1.jpeg";
+import img2 from "../src/AssetsFolder/img2.jpeg";
+import img3 from "../src/AssetsFolder/img3.jpeg";
+import field from "../src/AssetsFolder/field.png";
+import archer from "../src/AssetsFolder/archer.png";
+import arrow from "../src/AssetsFolder/arrow.png";
+import target from "../src/AssetsFolder/target.png";
+import stars from "../src/AssetsFolder/stars.png";
+import logo from "../src/AssetsFolder/logo.jpeg";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
