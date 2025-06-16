@@ -105,20 +105,7 @@ const Home = () => {
         ease: "easeInOut",
         repeat: Infinity,
       },
-    },
-  };
-
-  const scrollAnimation = {
-    initial: { y: 0 },
-    animate: {
-      y: [0, 10, 0],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
+    },  };
 
   return (
     <div className="relative h-screen overflow-hidden">
@@ -189,21 +176,14 @@ const Home = () => {
           >
             Discover the art of precision and discipline through archery
           </motion.p>
-        </motion.div>
-
-        {/* Scroll Indicator - Now visible on both mobile and desktop */}
+        </motion.div>        {/* Simple indicator without scroll animation */}
         <motion.div
           className="flex flex-col items-center absolute bottom-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <motion.div
-            variants={scrollAnimation}
-            initial="initial"
-            animate="animate"
-            className="text-white/80"
-          >
+          <div className="text-white/80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -219,7 +199,7 @@ const Home = () => {
               <path d="M7 13l5 5 5-5" />
               <path d="M7 6l5 5 5-5" />
             </svg>
-          </motion.div>
+          </div>
           <span className="text-xs md:text-sm text-white/80 mt-2">
             Let's Shoot
           </span>

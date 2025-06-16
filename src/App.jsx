@@ -2,16 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Achievements from "./pages/Achievements1";
-import Gallery from "./pages/Gallery";
 import Footer from "./components/Footer";
-import Parallax from "./components/Parallax";
-import HomeSecond from "./pages/HomeSecond";
 import NewGallery from "./pages/NewGallery";
-import Achievement from "./components/achievements/Achievement";
 import Contact from "./components/contact/Contact";
 import Loader from "./components/loader/loader";
 import { useState, useEffect } from "react";
+import Achievement from "./components/achievements/Achievement";
 
 // Import all images
 import test3 from "../src/images/img.jpg";
@@ -107,61 +103,47 @@ function App() {
               </div>
               <p className="text-sm text-gray-400 mt-2">{loadingProgress}%</p>
             </div>
-          </div>
-        ) : (
-          <>
+          </div>        ) : (
+          <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black">
             <Navbar />
-            <main className="flex-grow">
+            <main>
               <Routes>
                 <Route
                   path="/"
                   element={
-                    <>
-                      <section
-                        id="Home"
-                        className="relative h-[100vh] md:h-screen snap-start md:snap-center"
-                      >
+                    <div className="space-y-0">
+                      {/* Hero Section - Keep original design */}
+                      <section id="Home" className="">
                         <Home />
                       </section>
-                      <section className="relative h-[180vh] md:h-screen snap-start md:snap-center">
-                        <HomeSecond />
-                      </section>
-                      <section className="relative h-[100vh] md:h-screen snap-start md:snap-center">
-                        <Parallax type="About Us" />
-                      </section>
-                      <section
-                        id="About"
-                        className="px-4 relative h-[180vh] md:h-screen snap-start md:snap-center"
-                      >
+                      
+                      {/* Modern About Section */}
+                      <section id="About" className="bg-gradient-to-b from-gray-900 to-slate-800">
                         <About />
                       </section>
-                      <section
-                        className="py-4 relative h-[100vh] md:h-screen snap-start md:snap-center"
-                        id="Achievements"
-                      >
-                        <Parallax type="Achievements" />
+                      
+                      {/* Redesigned Achievements Section */}
+                      <section id="Achievements" className="bg-gradient-to-b from-slate-800 to-gray-900">
+                        <Achievement />
                       </section>
-                      <Achievement />
-                      <section
-                        id="Gallery"
-                        className="px-4 relative h-[60vh] md:h-screen md:snap-center"
-                      >
-                        <Gallery />
+                      
+                      {/* Contemporary Gallery Section */}
+                      <section id="Gallery" className="bg-gradient-to-b from-gray-900 to-slate-800">
+                        <NewGallery />
                       </section>
-                      <section
-                        id="Contact"
-                        className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center"
-                      >
+                      
+                      {/* Modern Contact Section */}
+                      <section id="Contact" className="bg-gradient-to-b from-slate-800 to-black">
                         <Contact />
                       </section>
-                    </>
+                    </div>
                   }
                 />
                 <Route path="/newgallery" element={<NewGallery />} />
               </Routes>
             </main>
             <Footer />
-          </>
+          </div>
         )}
       </div>
     </Router>
