@@ -129,12 +129,12 @@ function App() {
                       <section className="relative h-[100vh] md:h-screen snap-start md:snap-center">
                         <Parallax type="About Us" />
                       </section>
-                      {/* <section
+                      <section
                         id="About"
                         className="px-4 relative h-[180vh] md:h-screen snap-start md:snap-center"
                       >
                         <About />
-                      </section> */}
+                      </section>
                       <section
                         className="py-4 relative h-[100vh] md:h-screen snap-start md:snap-center"
                         id="Achievements"
@@ -148,12 +148,12 @@ function App() {
                       >
                         <Gallery />
                       </section>
-                      {/* <section
+                      <section
                         id="Contact"
                         className="px-4 relative h-[140vh] snap-start md:h-screen md:snap-center"
                       >
                         <Contact />
-                      </section> */}
+                      </section>
                     </>
                   }
                 />
