@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import field from "../public/field.png";
-import archer from "../public/archer.png";
-import arrow from "../public/arrow.png";
-import target from "../public/target.png";
-import stars from "../public/stars.png"
+import field from "../AssetsFolder/field.png";
+import archer from "../AssetsFolder/archer.png";
+import arrow from "../AssetsFolder/arrow.png";
+import target from "../AssetsFolder/target.png";
+import stars from "../AssetsFolder/stars.png"
 
 const Parallax = ({ type }) => {
   const ref = useRef();
@@ -42,7 +42,7 @@ const Parallax = ({ type }) => {
     >
       <motion.h1 
         style={{ x: yText, opacity: archerOpacity }} 
-        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[10vw] text-white`}
+        className={`absolute z-10 ${type === "About Us" ? "text-6xl" : "text-5xl"} md:text-8xl lg:text-[8vw] text-white`}
       >
         {type === "About Us" ? "About Us" : "Our Achivements"}
       </motion.h1>
