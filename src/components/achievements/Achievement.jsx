@@ -1,158 +1,291 @@
-import React, { useRef, useState } from 'react'
-import "./achievements.scss"
-import {motion, useScroll, useSpring, useTransform} from "framer-motion"
-import OlympicQuotaPlace from "../../public/Olympic quota place.jpeg"
-import AllIslandChampionship from "../../public/AllIslandChampionship.jpeg"
-import WAAJointTraning from "../../public/WAA Joint Traning.jpeg"
-import Olympicmedalist from "../../public/Olympic medalist.jpeg"
-import BatteredWall from "../../images/battered-wall-paint.jpg"
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
+// Image imports
+const OlympicQuotaPlace = "/Olympic_quota_place.jpeg";
+const AllIslandChampionship = "/AllIslandChampionship.jpeg";
+const WAAJointTraning = "/WAA_Joint_Traning.jpeg";
+const Olympicmedalist = "/Olympic medalist.jpeg";
 
-
-
-// const items = [
-//     {
-//         id:1,
-//         title:"2024 WAA Joint Training",
-//         img:WAAJointTraning,
-//         des:"Our archers and coach was selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7,
-//         children: [
-//       { "category": "U10 Boys", "Gold": "Thisula" },
-//       { "category": "U10 Girls", "Silver": "Tenashi", "Bronze": "Kushali" },
-//       { "category": "U12 Boys", "Gold": "Senula" },
-//       { "category": "U12 Girls", "Gold": "Amalmi" },
-//       { "category": "U14 Boys", "Gold": "Dinujaya" },
-//       { "category": "U14 Girls", "Gold": "Thenuki" },
-//       { "category": "U18 Boys", "Gold": "Dewmina" },
-//       { "category": "U18 Girls", "Gold": "Nithuli" },
-//       { "category": "60M Cadet Boys","Gold": "Dewmina","Silver": "Dinujaya","Bronze": "Bihandu" },
-//       { "category": "60M Cadet Girls", "Gold": "Thenuki" },
-//       { "category": "70M Boys", "Silver": "Ravien" },
-//       { "category": "Over 40", "Gold": "Chathuranga", "Bronze": "Chamil" }
-//     ]
-//       },
-//     {
-//         id:2,
-//         title:"Quater Finalist in Archery World Cup",
-//         // subtitle:"Ravein Dalapatadu",
-//         img:OlympicQuotaPlace ,
-//         des:"Once again you made us proud well done Archer. Unfortunately you was not able to grab the Olympic quota place but this is the best Achievement by any Sri Lankan Archer upto now. You had to face many difficulties to achieve this achievement. This was not a silk road for you. You walked through it and did the best you can to make mother Sri Lanka proud. Well done for your achievement. All the best for your future and hoping to see your face in 2024 Olympics you can do it, you will do it.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7,
-//         children:[]
-//     },
-//     {
-//         id:3,
-//         title:"All-Island Championship",
-//         img:AllIslandChampionship,
-//         des:"The All-Island Wayamba Archery Championships 2023 which attracted archers island wide, was held successfully at the Royal International School ground in Kurunegala recently.Uva Archery Club dominated proceedings winning 11 medals (5 golds, 4 silvers and 3 bronze). The championship saw participants competing in a variety of categories, including recurve and compound for both men and women.",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7
-//     },
-//     {
-//         id:4,
-//         title:"Youth Olympic Dream in Sight",
-//         img:Olympicmedalist,
-//         des:"Uva Archery Archer Ravien Dalpatadu participated in Youth Olympic Games Argentina 2018. Was able to rank 6th in the individual men's event bringing glory to mother Sri Lanka. Highest achievement in archery history for Sri Lanka in a youth event. All the best from Uva Archery family",
-//         "gold": 10,
-//         "silver": 15,
-//         "bronze": 7
-//     }
-// ]
-
-const Single = ({item}) =>{
-    const ref = useRef();
-    const event = items
-    console.log("event",event)
-    console.log("childre",item.children)
-    
-    const {scrollYProgress} = useScroll({
-        target:ref,
-        // offset: ["start start", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0,1], [-300, 300]);
-
-    const [openPopUp, setOpenPopUp] = useState(false);
-    const [gold,setGold] = useState(0);
-    const [silver,setSilver] = useState(0);
-    const [bronze,setBronze] = useState(0);
-    const [data,setdata] = useState([])
-    // console.log("data",data)
-
-    const handleMedal = (gold,silver,bronze,data) => {
-        setGold(gold);
-        setSilver(silver);
-        setBronze(bronze);
-        setOpenPopUp(true);
-        setdata(item.children)
-    }
-
-    return (
-    <section className="relative z-[2]">
-        <div className="container">
-            <div className="wrapper">
-                <div className="imageContainer" ref={ref}>
-                    <img src={item.img} alt="" />
-                </div>
-            <motion.div className="textContainer" style={{y}}>
-                <h2>{item.title}</h2>
-                {/* <h3>{item.subtitle}</h3> */}
-                <p>{item.des}</p>
-                <button>See Demo</button>
-            </motion.div>
-            </div>
-        </div>
-    </section>
-   
-    ); 
-};
+// Achievements data
+const achievements = [
+  {
+    id: 1,
+    title: "2024 WAA Joint Training",
+    img: WAAJointTraning,
+    description: "Our archers and coach were selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
+    year: "2024",
+    category: "International Training",
+    gold: 10,
+    silver: 4,
+    bronze: 3,
+    highlights: [
+      "Selected for prestigious international training program",
+      "Represented Sri Lanka in Korea Gyeyang",
+      "Multiple medal winners across age categories"
+    ],
+    medals: [
+      { category: "U10 Boys", Gold: "Thisula" },
+      { category: "U10 Girls", Silver: "Tenashi", Bronze: "Kushali" },
+      { category: "U12 Boys", Gold: "Senula" },
+      { category: "U12 Girls", Gold: "Amalmi" },
+      { category: "U14 Boys", Gold: "Dinujaya" },
+      { category: "U14 Girls", Gold: "Thenuki" },
+      { category: "U18 Boys", Gold: "Dewmina" },
+      { category: "U18 Girls", Gold: "Nithuli" },
+      { category: "60M Cadet Boys", Gold: "Dewmina", Silver: "Dinujaya", Bronze: "Bihandu" },
+      { category: "60M Cadet Girls", Gold: "Thenuki" },
+      { category: "70M Boys", Silver: "Ravien" },
+      { category: "Over 40", Gold: "Chathuranga", Bronze: "Chamil" }
+    ]
+  },
+  {
+    id: 2,
+    title: "World Cup Quarter Finalist",
+    img: OlympicQuotaPlace,
+    description: "Historic achievement - the highest placement by any Sri Lankan archer in World Cup competition. A proud moment that brings us closer to Olympic dreams.",
+    year: "2023",
+    category: "World Championship",
+    gold: 0,
+    silver: 0,
+    bronze: 1,
+    highlights: [
+      "Highest achievement by any Sri Lankan archer",
+      "Quarter-finalist in Archery World Cup",
+      "Olympic qualification pathway"
+    ],
+    medals: [
+      { category: "Men's Individual Recurve", Bronze: "Ravien Dalpatadu" }
+    ]
+  },
+  {
+    id: 3,
+    title: "All-Island Championship Dominance",
+    img: AllIslandChampionship,
+    description: "Uva Archery Club dominated the 2023 All-Island Championship with 11 medals at Royal International School ground, Kurunegala.",
+    year: "2023",
+    category: "National Championship",
+    gold: 4,
+    silver: 4,
+    bronze: 3,
+    highlights: [
+      "11 total medals won",
+      "Dominated across all age categories",
+      "National championship excellence"
+    ],
+    medals: [
+      { category: "Senior Men Recurve", Gold: "Ravien Dalpatadu" },
+      { category: "Junior Men Recurve", Gold: "Dewmina Senadeera", Silver: "Dinujaya Fernando" },
+      { category: "Cadet Girls Recurve", Gold: "Thenuki Gamage" },
+      { category: "Under 12 Boys", Gold: "Senula Kavinda" },
+      { category: "Under 12 Girls", Silver: "Amalmi Hansika" },
+      { category: "Under 10 Boys", Silver: "Thisula Mihiran", Bronze: "Sahan Viraj" },
+      { category: "Under 10 Girls", Silver: "Tenashi Fernando", Bronze: "Kushali Sandareka" },
+      { category: "Compound Senior", Bronze: "Chathuranga Silva" }
+    ]
+  },
+  {
+    id: 4,
+    title: "Youth Olympic Excellence",
+    img: Olympicmedalist,
+    description: "Ravien Dalpatadu ranked 6th at Youth Olympic Games 2018 in Argentina — Sri Lanka's highest youth archery placement.",
+    year: "2018",
+    category: "Youth Olympics",
+    gold: 0,
+    silver: 0,
+    bronze: 0,
+    highlights: [
+      "6th place at Youth Olympic Games",
+      "Argentina 2018 representation",
+      "Youngest Sri Lankan Olympic archer"
+    ],
+    medals: [
+      { category: "Youth Olympic Games 2018", result: "6th Place - Ravien Dalpatadu" }
+    ]
+  }
+];
 
 const Achievement = () => {
-    const ref = useRef();
+  const [expandedCard, setExpandedCard] = useState(null);
 
-    const {scrollYProgress} = useScroll({
-        target:ref,
-        offset: [ "end end", "start start"],
-    });
+  const toggleCard = (id) => {
+    setExpandedCard(expandedCard === id ? null : id);
+  };
 
-    const scaleX =  useSpring(scrollYProgress,{
-        stiffness:100,
-        damping:30,
-    });
+  const getCategoryColor = (category) => {
+    switch (category) {
+      case 'International Training': return 'from-blue-500 to-cyan-500';
+      case 'World Championship': return 'from-purple-500 to-pink-500';
+      case 'National Championship': return 'from-green-500 to-emerald-500';
+      case 'Youth Olympics': return 'from-red-500 to-orange-500';
+      default: return 'from-gray-500 to-gray-600';
+    }
+  };
 
   return (
-    <div className='achievements relative' ref={ref}>
-      {/* Battered Wall Texture Overlay */}
-      <div 
-        className="fixed inset-0 z-[1] mix-blend-soft-light opacity-40"
-        style={{
-          backgroundImage: `url(${BatteredWall})`,
-          backgroundSize: '500px',
-          backgroundPosition: 'center',
-          imageRendering: 'crisp-edges',
-        }}
-      />
+    <div className="container mx-auto px-4 py-16 max-w-7xl">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6">
+          Our Achievements
+        </h1>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Years of dedication, training, and passion have led us to remarkable victories on national and international stages.
+        </p>
+      </motion.div>
 
-      {/* Main content with increased z-index */}
-      <div className="progress z-[2] relative">
-        <h1>Our Achievements</h1>
-        <motion.div style={{scaleX}} className="progressBar"></motion.div>
-      </div>
-      
-      {/* Wrap items in a container with higher z-index */}
-      <div className="relative z-[2]">
-        {items.map((item) => (
-          <Single item={item} key={item.id}/>
+      {/* Achievement Cards */}
+      <div className="space-y-8">
+        {achievements.map((achievement, index) => (
+          <motion.div
+            key={achievement.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="bg-white/5 backdrop-blur-lg rounded-3xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500"
+          >
+            <div className="lg:flex">
+              {/* Image Section */}
+              <div className="lg:w-2/5">
+                <div className="relative h-64 lg:h-full overflow-hidden">
+                  <img
+                    src={achievement.img}
+                    alt={achievement.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  
+                  {/* Category Badge */}
+                  <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${getCategoryColor(achievement.category)} text-white text-sm font-medium`}>
+                    {achievement.category}
+                  </div>
+                  
+                  {/* Year Badge */}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm flex items-center">
+                    📅 {achievement.year}
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="lg:w-3/5 p-8">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">{achievement.title}</h2>
+                    <p className="text-gray-300 leading-relaxed mb-4">{achievement.description}</p>
+                  </div>
+                </div>
+
+                {/* Medal Summary */}
+                <div className="flex items-center space-x-6 mb-6">
+                  {achievement.gold > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-yellow-400 text-2xl">🏆</span>
+                      <span className="text-white font-bold">{achievement.gold}</span>
+                    </div>
+                  )}
+                  {achievement.silver > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-gray-300 text-2xl">🥈</span>
+                      <span className="text-white font-bold">{achievement.silver}</span>
+                    </div>
+                  )}
+                  {achievement.bronze > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-orange-400 text-2xl">🥉</span>
+                      <span className="text-white font-bold">{achievement.bronze}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Highlights */}
+                <div className="space-y-2 mb-6">
+                  {achievement.highlights.map((highlight) => (
+                    <div key={highlight} className="flex items-start space-x-3">
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 mt-2.5 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Expand Button */}
+                <button
+                  onClick={() => toggleCard(achievement.id)}
+                  className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  <span className="font-medium">
+                    {expandedCard === achievement.id ? 'Show Less' : 'View Details'}
+                  </span>
+                  <span className={`transition-transform duration-300 ${expandedCard === achievement.id ? 'rotate-180' : ''}`}>
+                    ⬇️
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {/* Expanded Content */}
+            <AnimatePresence>
+              {expandedCard === achievement.id && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="border-t border-white/10 bg-white/5"
+                >
+                  <div className="p-8">
+                    <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                      👥 Medal Winners
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {achievement.medals.map((medal, medalIndex) => (
+                        <div key={medalIndex} className="bg-white/5 rounded-xl p-4 border border-white/10">
+                          <div className="font-medium text-white mb-2">{medal.category}</div>
+                          <div className="space-y-1">
+                            {medal.Gold && (
+                              <div className="flex items-center space-x-2">
+                                <span className="text-yellow-400">🏆</span>
+                                <span className="text-gray-300 text-sm">{medal.Gold}</span>
+                              </div>
+                            )}
+                            {medal.Silver && (
+                              <div className="flex items-center space-x-2">
+                                <span className="text-gray-300">🥈</span>
+                                <span className="text-gray-300 text-sm">{medal.Silver}</span>
+                              </div>
+                            )}
+                            {medal.Bronze && (
+                              <div className="flex items-center space-x-2">
+                                <span className="text-orange-400">🥉</span>
+                                <span className="text-gray-300 text-sm">{medal.Bronze}</span>
+                              </div>
+                            )}
+                            {medal.result && (
+                              <div className="flex items-center space-x-2">
+                                <span className="text-blue-400">🎯</span>
+                                <span className="text-gray-300 text-sm">{medal.result}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         ))}
       </div>
     </div>
   );
 };
 
-export default Achievement
+export default Achievement;

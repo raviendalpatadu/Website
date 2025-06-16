@@ -1,199 +1,156 @@
-import React, { useRef, useState } from 'react'
-import "./contact.scss"
-import {motion, useInView} from "framer-motion"
-import emailjs from '@emailjs/browser';
-
-const variants = {
-    initial:{
-        y:500,
-        opacity:0,
-    },
-    animate:{
-        y:0,
-        opacity:1,
-        transition:{
-            duration:0.5,
-            staggerChildren:0.1,
-        },
-    },
-}
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
-
-    const ref = useRef();
-    const formRef = useRef();
-    const [error, setError] = useState(false);
-    const [success, setSuccess] = useState(false);
-
-    const isInView = useInView(ref, { margin: "-20% 0px -20% 0px" });
-
-    const [showPopup, setShowPopup] = useState(false);
-    const [popupMessage, setPopupMessage] = useState("");
-    const [popupType, setPopupType] = useState(""); 
-
-const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm('service_7re6m2t', 'template_ie3a6kt', formRef.current, {
-        publicKey: 'Y0H8tVJE0ZVlfPsWr',
-      })
-      .then(
-        () => {
-          setSuccess(true);
-          setError(false);
-          formRef.current.reset(); 
-
-          setPopupMessage("Email sent successfully!");
-          setPopupType("success");
-          setShowPopup(true);
-
-          setTimeout(() => setShowPopup(false), 3000);
-        },
-        (error) => {
-          setError(true);
-          setSuccess(false);
-
-          setPopupMessage("Failed to send email. Try again!");
-          setPopupType("error");
-          setShowPopup(true);
-
-          setTimeout(() => setShowPopup(false), 3000);
-        }
-      );
-};
+  const contactInfo = [
+    {
+      icon: '📍',
+      title: 'Visit Us',
+      details: ['Rotoruwa, Kabillawela North', 'Bandarawela, Sri Lanka'],
+      action: 'Get Directions'
+    },
+    {
+      icon: '📞',
+      title: 'Call Us',
+      details: ['+94 123 456 789', '+94 987 654 321'],
+      action: 'Make a Call'
+    },
+    {
+      icon: '✉️',
+      title: 'Email Us',
+      details: ['uvaarchery@gmail.com', 'info@uvaarchery.lk'],
+      action: 'Send Email'
+    },
+    {
+      icon: '⏰',
+      title: 'Training Hours',
+      details: ['Mon-Fri: 4:00 PM - 7:00 PM', 'Sat-Sun: 8:00 AM - 12:00 PM'],
+      action: 'View Schedule'
+    }
+  ];
 
   return (
-    <motion.div 
-      ref={ref}
-      className="min-h-screen max-w-6xl mx-auto flex md:items-center items-left flex-col md:flex-row gap-12 px-4 py-12 md:py-0 md:px-8 lg:gap-16"
-      variants={variants} 
-      initial="initial" 
-      whileInView="animate"
-    >
-      {/* Text Container */}
-      <motion.div 
-        className="flex-1 flex flex-col gap-10 md:gap-16"
-        variants={variants}
+    <div className="container mx-auto px-4 py-16 max-w-7xl">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
       >
-        <motion.h1 
-          className="text-5xl md:text-7xl leading-none font-bold"
-          variants={variants}
-        >
-          Contact Us
-        </motion.h1>
-        
-        <motion.h2 
-          className="text-2xl md:text-3xl text-amber-300"
-          variants={variants}
-        >
-          Get in Touch
-        </motion.h2>
-        
-        <motion.div className="space-y-8" variants={variants}>
-          <div className="space-y-2">
-            <h3 className="text-xl">Location</h3>
-            <p className="font-light">
-              Rotoruwa, Kabillawela North,<br />
-              Bandarawela, Sri Lanka
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <h3 className="text-xl">Contact Info</h3>
-            <p className="font-light">
-              Email: uvaarchery@gmail.com<br />
-              Phone: +94 123 456 789
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <h3 className="text-xl">Training Hours</h3>
-            <p className="font-light">
-              Monday - Friday: 9:00 AM - 6:00 PM<br />
-              Saturday: 9:00 AM - 1:00 PM<br />
-              Sunday: Closed
-            </p>
-          </div>
-        </motion.div>
+        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+          Get In Touch
+        </h1>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Ready to start your archery journey? Have questions about our programs? We'd love to hear from you!
+        </p>
       </motion.div>
 
-      {/* Form Container */}
-      <div className="flex-1 relative">
-        <motion.div 
-          className="absolute inset-0 m-auto -z-10"
-          initial={{ opacity: 1 }}
-          whileInView={{ opacity: 0 }}
-          transition={{ delay: 3, duration: 1 }}
+      {/* Contact Information - Single Column Layout */}
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="space-y-8"
         >
-          <svg width="450px" height="450px" viewBox="0 0 32.666 32.666">
-            <motion.path
-              strokeWidth={0.2}
-              fill="none"
-              stroke="orange"
-              initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-              transition={{ delay: 0.5, duration: 3 }}
-              d="M21 5.5C21 14.0604 14.0604 21 5.5 21C5.11378 21 4.73086 20.9859 4.35172 20.9581C3.91662 20.9262 3.69906 20.9103 3.50103 20.7963C3.33701 20.7019 3.18146 20.5345 3.09925 20.364C3 20.1582 3 19.9181 3 19.438V16.6207C3 16.2169 3 16.015 3.06645 15.842C3.12515 15.6891 3.22049 15.553 3.3441 15.4456C3.48403 15.324 3.67376 15.255 4.05321 15.117L7.26005 13.9509C7.70153 13.7904 7.92227 13.7101 8.1317 13.7237C8.31637 13.7357 8.49408 13.7988 8.64506 13.9058C8.81628 14.0271 8.93713 14.2285 9.17882 14.6314L10 16C12.6499 14.7999 14.7981 12.6489 16 10L14.6314 9.17882C14.2285 8.93713 14.0271 8.81628 13.9058 8.64506C13.7988 8.49408 13.7357 8.31637 13.7237 8.1317C13.7101 7.92227 13.7904 7.70153 13.9509 7.26005L13.9509 7.26005L15.117 4.05321C15.255 3.67376 15.324 3.48403 15.4456 3.3441C15.553 3.22049 15.6891 3.12515 15.842 3.06645C16.015 3 16.2169 3 16.6207 3H19.438C19.9181 3 20.1582 3 20.364 3.09925C20.5345 3.18146 20.7019 3.33701 20.7963 3.50103C20.9103 3.69907 20.9262 3.91662 20.9581 4.35173C20.9859 4.73086 21 5.11378 21 5.5Z"
-            />
-          </svg>
-        </motion.div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              Whether you're a beginner looking to learn archery or an experienced archer seeking to join our community, 
+              we're here to help you hit your target.
+            </p>
+          </div>
 
-        <motion.form
-          ref={formRef}
-          onSubmit={sendEmail}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 1 }}
-          className="flex flex-col gap-5"
-        >
-          <input
-            type="text"
-            required
-            placeholder="Name"
-            name="name"
-            className="p-5 bg-transparent border border-white rounded text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-amber-300"
-          />
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            name="email"
-            className="p-5 bg-transparent border border-white rounded text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-amber-300"
-          />
-          <textarea
-            rows={8}
-            placeholder="Message"
-            name="message"
-            className="p-5 bg-transparent border border-white rounded text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-amber-300"
-          />
-          <button
-            type="submit"
-            className="p-5 border-none bg-amber-500 cursor-pointer font-medium rounded hover:bg-amber-600 transition-colors"
+          {/* Contact Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {contactInfo.map((info, index) => (
+              <motion.div
+                key={info.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300"
+              >
+                <div className="text-center">
+                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {info.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-4">{info.title}</h3>
+                  <div className="space-y-2 mb-6">
+                    {info.details.map((detail) => (
+                      <p key={detail} className="text-gray-300">{detail}</p>
+                    ))}
+                  </div>
+                  <button className="text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200 bg-blue-400/10 hover:bg-blue-400/20 px-4 py-2 rounded-lg">
+                    {info.action} →
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Social Media Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10 text-center"
           >
-            Submit
-          </button>
-        </motion.form>
+            <h3 className="text-2xl font-semibold text-white mb-6">Follow Our Journey</h3>
+            <p className="text-gray-300 mb-8">
+              Stay connected with our archery community and get the latest updates on competitions, training, and achievements.
+            </p>
+            <div className="flex justify-center space-x-6">
+              {[
+                { icon: '📘', name: 'Facebook', color: 'hover:text-blue-400' },
+                { icon: '📷', name: 'Instagram', color: 'hover:text-pink-400' },
+                { icon: '🐦', name: 'Twitter', color: 'hover:text-blue-300' },
+                { icon: '📺', name: 'YouTube', color: 'hover:text-red-400' }
+              ].map((social) => (
+                <button
+                  key={social.name}
+                  className={`w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-gray-400 transition-all duration-300 hover:bg-white/20 hover:scale-110 ${social.color}`}
+                  title={social.name}
+                >
+                  <span className="text-2xl">{social.icon}</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* Popup Notification */}
-      {showPopup && (
-        <motion.div
-          className={`fixed top-12 left-1/2 -translate-x-1/2 py-2 px-4 rounded-lg font-bold z-50 text-white shadow-md ${
-            popupType === 'success' ? 'bg-green-500' : 'bg-red-500'
-          }`}
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.3 }}
-        >
-          {popupMessage}
-        </motion.div>
-      )}
-    </motion.div>
-  )
-}
+      {/* Map Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="mt-20"
+      >
+        <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Find Us Here</h2>
+          <div className="relative bg-gray-800 rounded-2xl overflow-hidden h-96 flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🗺️</div>
+              <h3 className="text-xl font-semibold text-white mb-2">Interactive Map Coming Soon</h3>
+              <p className="text-gray-400 mb-4">
+                Rotoruwa, Kabillawela North, Bandarawela, Sri Lanka
+              </p>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                Open in Google Maps
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
-export default Contact
-
-
+export default Contact;
