@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './achievements.scss';
+import achievementsData from '../../Json Files/Achivements.json';
 
 // Professional SVG Icons
 const TrophyIcon = () => (
@@ -75,108 +76,8 @@ const ResultIcon = () => (
     <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" fill="#4F9EF8"/>
   </svg>
 );
-const OlympicQuotaPlace = "/Olympic_quota_place.jpeg";
-const AllIslandChampionship = "/AllIslandChampionship.jpeg";
-const WAAJointTraning = "/WAA_Joint_Traning.jpeg";
-const Olympicmedalist = "/Olympic medalist.jpeg";
-
-// Achievements data
-const achievements = [
-  {
-    id: 1,
-    title: "2024 WAA Joint Training",
-    img: WAAJointTraning,
-    description: "Our archers and coach were selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
-    year: "2024",
-    category: "International Training",
-    gold: 10,
-    silver: 4,
-    bronze: 3,
-    highlights: [
-      "Selected for prestigious international training program",
-      "Represented Sri Lanka in Korea Gyeyang",
-      "Multiple medal winners across age categories"
-    ],
-    medals: [
-      { category: "U10 Boys", Gold: "Thisula" },
-      { category: "U10 Girls", Silver: "Tenashi", Bronze: "Kushali" },
-      { category: "U12 Boys", Gold: "Senula" },
-      { category: "U12 Girls", Gold: "Amalmi" },
-      { category: "U14 Boys", Gold: "Dinujaya" },
-      { category: "U14 Girls", Gold: "Thenuki" },
-      { category: "U18 Boys", Gold: "Dewmina" },
-      { category: "U18 Girls", Gold: "Nithuli" },
-      { category: "60M Cadet Boys", Gold: "Dewmina", Silver: "Dinujaya", Bronze: "Bihandu" },
-      { category: "60M Cadet Girls", Gold: "Thenuki" },
-      { category: "70M Boys", Silver: "Ravien" },
-      { category: "Over 40", Gold: "Chathuranga", Bronze: "Chamil" }
-    ]
-  },
-  {
-    id: 2,
-    title: "World Cup Quarter Finalist",
-    img: OlympicQuotaPlace,
-    description: "Historic achievement - the highest placement by any Sri Lankan archer in World Cup competition. A proud moment that brings us closer to Olympic dreams.",
-    year: "2023",
-    category: "World Championship",
-    gold: 0,
-    silver: 0,
-    bronze: 1,
-    highlights: [
-      "Highest achievement by any Sri Lankan archer",
-      "Quarter-finalist in Archery World Cup",
-      "Olympic qualification pathway"
-    ],
-    medals: [
-      { category: "Men's Individual Recurve", Bronze: "Ravien Dalpatadu" }
-    ]
-  },
-  {
-    id: 3,
-    title: "All-Island Championship Dominance",
-    img: AllIslandChampionship,
-    description: "Uva Archery Club dominated the 2023 All-Island Championship with 11 medals at Royal International School ground, Kurunegala.",
-    year: "2023",
-    category: "National Championship",
-    gold: 4,
-    silver: 4,
-    bronze: 3,
-    highlights: [
-      "11 total medals won",
-      "Dominated across all age categories",
-      "National championship excellence"
-    ],
-    medals: [
-      { category: "Senior Men Recurve", Gold: "Ravien Dalpatadu" },
-      { category: "Junior Men Recurve", Gold: "Dewmina Senadeera", Silver: "Dinujaya Fernando" },
-      { category: "Cadet Girls Recurve", Gold: "Thenuki Gamage" },
-      { category: "Under 12 Boys", Gold: "Senula Kavinda" },
-      { category: "Under 12 Girls", Silver: "Amalmi Hansika" },
-      { category: "Under 10 Boys", Silver: "Thisula Mihiran", Bronze: "Sahan Viraj" },
-      { category: "Under 10 Girls", Silver: "Tenashi Fernando", Bronze: "Kushali Sandareka" },
-      { category: "Compound Senior", Bronze: "Chathuranga Silva" }
-    ]
-  },
-  {
-    id: 4,
-    title: "Youth Olympic Excellence",
-    img: Olympicmedalist,
-    description: "Ravien Dalpatadu ranked 6th at Youth Olympic Games 2018 in Argentina — Sri Lanka's highest youth archery placement.",
-    year: "2018",
-    category: "Youth Olympics",
-    gold: 0,
-    silver: 0,
-    bronze: 0,
-    highlights: [
-      "6th place at Youth Olympic Games",
-      "Argentina 2018 representation",
-      "Youngest Sri Lankan Olympic archer"
-    ],
-    medals: [
-      { category: "Youth Olympic Games 2018", result: "6th Place - Ravien Dalpatadu" }
-    ]
-  }
-];
+// get data from json files
+const achievements = achievementsData;
 
 const Achievement = () => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -212,8 +113,7 @@ const Achievement = () => {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         className="text-center mb-16"
-      >
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6">
+      >        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 animated-gradient-text">
           Our Achievements
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">

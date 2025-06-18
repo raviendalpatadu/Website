@@ -8,6 +8,14 @@ import Contact from "./components/contact/Contact";
 import Loader from "./components/loader/loader";
 import { useState, useEffect } from "react";
 import Achievement from "./components/achievements/Achievement";
+import DynamicBackground from "./components/DynamicBackground";
+import { 
+  HeroBackground, 
+  AboutBackground, 
+  AchievementsBackground, 
+  GalleryBackground, 
+  ContactBackground 
+} from "./components/ArcheryBackgrounds";
 
 // Import all images
 import test3 from "../src/images/img.jpg";
@@ -84,11 +92,9 @@ function App() {
     };
 
     preloadImages();
-  }, []);
-
-  return (
+  }, []);  return (
     <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col relative z-10">
         {isLoading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
             <div className="text-white text-center flex items-center justify-center flex-col">
@@ -111,38 +117,44 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <div className="space-y-0">
-                      {/* Hero Section - Keep original design */}
-                      <section id="Home" className="">
+                    <div className="space-y-0">                      {/* Hero Section - Keep original design */}
+                      <section id="Home" className="relative">
+                        <HeroBackground />
                         <Home />
                       </section>
                       
                       {/* Modern About Section */}
-                      <section id="About" className="bg-gradient-to-b from-gray-900 to-slate-800">
+                      <section id="About" className="bg-gradient-to-b from-gray-900 to-slate-800 relative">
+                        <AboutBackground />
                         <About />
                       </section>
                       
                       {/* Redesigned Achievements Section */}
-                      <section id="Achievements" className="bg-gradient-to-b from-slate-800 to-gray-900">
+                      <section id="Achievements" className="bg-gradient-to-b from-slate-800 to-gray-900 relative">
+                        <AchievementsBackground />
                         <Achievement />
                       </section>
                       
                       {/* Contemporary Gallery Section */}
-                      <section id="Gallery" className="bg-gradient-to-b from-gray-900 to-slate-800">
+                      <section id="Gallery" className="bg-gradient-to-b from-gray-900 to-slate-800 relative">
+                        <GalleryBackground />
                         <NewGallery />
                       </section>
                       
                       {/* Modern Contact Section */}
-                      <section id="Contact" className="bg-gradient-to-b from-slate-800 to-black">
+                      <section id="Contact" className="bg-gradient-to-b from-slate-800 to-black relative">
+                        <ContactBackground />
                         <Contact />
                       </section>
                     </div>
                   }
                 />
                 <Route path="/newgallery" element={<NewGallery />} />
-              </Routes>
-            </main>
-            <Footer />
+              </Routes>            </main>
+            <footer className="relative">
+              <DynamicBackground section="footer" />
+              <Footer />
+            </footer>
           </div>
         )}
       </div>
