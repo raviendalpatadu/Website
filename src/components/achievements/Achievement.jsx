@@ -163,7 +163,7 @@ const Achievement = () => {
                     <p className="text-gray-300 leading-relaxed mb-4">{achievement.description}</p>
                   </div>
                 </div>                {/* Medal Summary */}
-                <div className="flex items-center space-x-6 mb-6">                  {achievement.gold > 0 && (
+                <div className="flex flex-wrap gap-4 items-center mb-6">                  {achievement.gold > 0 && (
                     <div className="flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 px-3 py-2 rounded-lg border border-yellow-400/30">
                       <span className="medal-icon"><GoldMedalIcon /></span>
                       <span className="text-white font-bold text-lg">{achievement.gold}</span>
